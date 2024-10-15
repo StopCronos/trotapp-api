@@ -12,3 +12,5 @@ coverage/
 *.svg
 *.bmp
 *.tiff
+
+eslint.config.mjs

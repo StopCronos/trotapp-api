@@ -1,13 +1,16 @@
-import { Router } from "express";
+import { Router} from "express";
+import AccountController from "./accountController";
 import { AuthenticationController } from "../auth/controller";
 import { AuthMiddleware } from "../middlewares/authMiddleware";
 
-const router = Router();
+const AuthRoutes = Router();
+
+// User registration
+AuthRoutes.post("/user", AccountController.save as any);
 
 const controller = new AuthenticationController();
 
-
 //route revalidation token
-router.post('/revalidate-token', [AuthMiddleware.validateJWT] as any, controller.revalidateToken as any);
+AuthRoutes.post('/revalidate-token', [AuthMiddleware.validateJWT] as any, controller.revalidateToken as any);
 
-export default router;
+export default AuthRoutes;
